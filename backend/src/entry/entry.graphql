@@ -1,0 +1,29 @@
+type Query {
+  entrys: [Entry]
+  entry(id: ID!): Entry
+}
+
+type Mutation {
+  createEntry(createEntryInput: CreateEntryInput): Entry
+}
+
+type Subscription {
+  entryCreated: Entry
+}
+
+type Entry {
+  id: Int
+  value: Float
+  isIncome: Boolean
+  period: Period
+  label: Label
+  expenseGroup: ExpenseGroup
+}
+
+input CreateEntryInput {
+  value: Float
+  isIncome: Boolean
+  period: ID!
+  label: ID!
+  expenseGroup: ID!
+}

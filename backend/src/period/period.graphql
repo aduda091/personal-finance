@@ -1,0 +1,23 @@
+type Query {
+  periods: [Period]
+  period(id: ID!): Period
+}
+
+type Mutation {
+  createPeriod(createPeriodInput: CreatePeriodInput): Period
+}
+
+type Subscription {
+  periodCreated: Period
+}
+
+type Period {
+  id: Int
+  month: Int
+  year: Int
+}
+
+input CreatePeriodInput {
+  month: Int
+  year: Int
+}

@@ -1,0 +1,23 @@
+type Query {
+  labels: [Label]
+  label(id: ID!): Label
+}
+
+type Mutation {
+  createLabel(createLabelInput: CreateLabelInput): Label
+}
+
+type Subscription {
+  labelCreated: Label
+}
+
+type Label {
+  id: Int
+  label: String
+  isIncome: Boolean
+}
+
+input CreateLabelInput {
+  label: String
+  isIncome: Boolean
+}

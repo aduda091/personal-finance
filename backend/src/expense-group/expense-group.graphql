@@ -1,0 +1,21 @@
+type Query {
+  expenseGroups: [ExpenseGroup]
+  expenseGroup(id: ID!): ExpenseGroup
+}
+
+type Mutation {
+  createExpenseGroup(createExpenseGroupInput: CreateExpenseGroupInput): ExpenseGroup
+}
+
+type Subscription {
+  expenseGroupCreated: ExpenseGroup
+}
+
+type ExpenseGroup {
+  id: Int
+  name: String
+}
+
+input CreateExpenseGroupInput {
+  name: String
+}
