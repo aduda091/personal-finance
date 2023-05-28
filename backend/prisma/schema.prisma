@@ -46,6 +46,6 @@ model Entry {
     periodId       Int
     label          Label        @relation(fields: [labelId], references: [id])
     labelId        Int
-    expenseGroup   ExpenseGroup @relation(fields: [expenseGroupId], references: [id])
-    expenseGroupId Int
+    expenseGroup   ExpenseGroup? @relation(fields: [expenseGroupId], references: [id])
+    expenseGroupId Int?
 }
