@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+// Income labels, Expense labels
+// == id, name
+model Label {
+    id       Int     @id @default(autoincrement())
+    label    String
+    entries  Entry[]
+    isIncome Boolean @default(false)
+}
+
+// groups (pula, selo, other)
+// == id, name
+model ExpenseGroup {
+    id      Int     @id @default(autoincrement())
+    name    String
+    entries Entry[]
+}
+
+// Income/Expense period 
+// == id, month, year
+model Period {
+    id      Int     @id @default(autoincrement())
+    month   Int
+    year    Int
+    entries Entry[]
+}
+
+// Income/Expense entries
+// == period id, label id, value, group id
+model Entry {
+    id             Int          @id @default(autoincrement())
+    value          Decimal
+    isIncome       Boolean      @default(false)
+    period         Period       @relation(fields: [periodId], references: [id])
+    periodId       Int
+    label          Label        @relation(fields: [labelId], references: [id])
+    labelId        Int
+    expenseGroup   ExpenseGroup @relation(fields: [expenseGroupId], references: [id])
+    expenseGroupId Int
+}
