@@ -5,11 +5,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class ExpenseGroupService {
   constructor(private prisma: PrismaService) {}
-  async findOne(
-    expenseGroupWhereInput: Prisma.ExpenseGroupWhereInput,
-  ): Promise<ExpenseGroup | null> {
+  async findOne(id: string): Promise<ExpenseGroup | null> {
     return this.prisma.expenseGroup.findFirst({
-      where: expenseGroupWhereInput,
+      where: { id: parseInt(id) },
     });
   }
 
@@ -23,5 +21,10 @@ export class ExpenseGroupService {
     });
   }
 
-  // todo: update, delete
+  async delete(id: string): Promise<ExpenseGroup> {
+    return this.prisma.expenseGroup.delete({
+      where: { id: parseInt(id) },
+    });
+  }
+  // todo: update
 }

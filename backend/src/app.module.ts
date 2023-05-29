@@ -6,6 +6,7 @@ import { join } from 'path';
 import { PeriodModule } from './period/period.module';
 import { PrismaService } from './prisma/prisma.service';
 import { LabelModule } from './label/label.module';
+import { ExpenseGroupModule } from './expense-group/expense-group.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { LabelModule } from './label/label.module';
     }),
     PeriodModule,
     LabelModule,
+    ExpenseGroupModule,
   ],
   controllers: [],
   providers: [PrismaService],

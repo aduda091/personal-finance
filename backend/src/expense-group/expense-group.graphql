@@ -4,7 +4,11 @@ type Query {
 }
 
 type Mutation {
-  createExpenseGroup(createExpenseGroupInput: CreateExpenseGroupInput): ExpenseGroup
+  createExpenseGroup(
+    createExpenseGroupInput: CreateExpenseGroupInput
+  ): ExpenseGroup
+
+  deleteExpenseGroup(id: Int!): ExpenseGroup
 }
 
 type Subscription {

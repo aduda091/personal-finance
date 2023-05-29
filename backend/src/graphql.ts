@@ -46,6 +46,7 @@ export interface IMutation {
     __typename?: 'IMutation';
     createEntry(createEntryInput?: Nullable<CreateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
     createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
+    deleteExpenseGroup(id: number): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
     deleteLabel(id: number): Nullable<Label> | Promise<Nullable<Label>>;
     createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
