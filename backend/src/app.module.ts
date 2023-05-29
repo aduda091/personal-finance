@@ -7,6 +7,7 @@ import { PeriodModule } from './period/period.module';
 import { PrismaService } from './prisma/prisma.service';
 import { LabelModule } from './label/label.module';
 import { ExpenseGroupModule } from './expense-group/expense-group.module';
+import { EntryModule } from './entry/entry.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ExpenseGroupModule } from './expense-group/expense-group.module';
     PeriodModule,
     LabelModule,
     ExpenseGroupModule,
+    EntryModule,
   ],
   controllers: [],
   providers: [PrismaService],

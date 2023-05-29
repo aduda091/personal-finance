@@ -1,10 +1,12 @@
 type Query {
-  entrys: [Entry]
+  entries: [Entry]
   entry(id: ID!): Entry
 }
 
 type Mutation {
   createEntry(createEntryInput: CreateEntryInput): Entry
+  updateEntry(updateEntryInput: UpdateEntryInput): Entry
+  deleteEntry(id: Int!): Entry
 }
 
 type Subscription {
@@ -25,5 +27,14 @@ input CreateEntryInput {
   isIncome: Boolean!
   period: ID!
   label: ID!
-  expenseGroup: ID!
+  expenseGroup: ID
+}
+
+input UpdateEntryInput {
+  id: ID!
+  value: Float
+  isIncome: Boolean
+  period: ID
+  label: ID
+  expenseGroup: ID
 }

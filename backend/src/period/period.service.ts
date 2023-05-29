@@ -29,5 +29,5 @@ export class PeriodService {
     });
   }
 
-  // todo: delete
+  // todo: update
 }

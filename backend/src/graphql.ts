@@ -13,7 +13,16 @@ export interface CreateEntryInput {
     isIncome: boolean;
     period: string;
     label: string;
-    expenseGroup: string;
+    expenseGroup?: Nullable<string>;
+}
+
+export interface UpdateEntryInput {
+    id: string;
+    value?: Nullable<number>;
+    isIncome?: Nullable<boolean>;
+    period?: Nullable<string>;
+    label?: Nullable<string>;
+    expenseGroup?: Nullable<string>;
 }
 
 export interface CreateExpenseGroupInput {
@@ -32,7 +41,7 @@ export interface CreatePeriodInput {
 
 export interface IQuery {
     __typename?: 'IQuery';
-    entrys(): Nullable<Nullable<Entry>[]> | Promise<Nullable<Nullable<Entry>[]>>;
+    entries(): Nullable<Nullable<Entry>[]> | Promise<Nullable<Nullable<Entry>[]>>;
     entry(id: string): Nullable<Entry> | Promise<Nullable<Entry>>;
     expenseGroups(): Nullable<Nullable<ExpenseGroup>[]> | Promise<Nullable<Nullable<ExpenseGroup>[]>>;
     expenseGroup(id: string): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
@@ -45,6 +54,8 @@ export interface IQuery {
 export interface IMutation {
     __typename?: 'IMutation';
     createEntry(createEntryInput?: Nullable<CreateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
+    updateEntry(updateEntryInput?: Nullable<UpdateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
+    deleteEntry(id: number): Nullable<Entry> | Promise<Nullable<Entry>>;
     createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     deleteExpenseGroup(id: number): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
