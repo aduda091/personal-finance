@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ExpenseGroupService } from './expense-group.service';
-import { CreateExpenseGroupInput } from 'src/graphql';
+import { CreateExpenseGroupInput, UpdateExpenseGroupInput } from 'src/graphql';
 
 @Resolver('ExpenseGroup')
 export class ExpenseGroupResolver {
@@ -17,8 +17,17 @@ export class ExpenseGroupResolver {
   }
 
   @Mutation('createExpenseGroup')
-  async create(@Args('input') input: CreateExpenseGroupInput) {
+  async create(
+    @Args('createExpenseGroupInput') input: CreateExpenseGroupInput,
+  ) {
     return this.expenseGroupService.create(input);
+  }
+
+  @Mutation('updateExpenseGroup')
+  async update(
+    @Args('updateExpenseGroupInput') input: UpdateExpenseGroupInput,
+  ) {
+    return this.expenseGroupService.update(input);
   }
 
   @Mutation('deleteExpenseGroup')

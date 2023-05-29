@@ -29,6 +29,11 @@ export interface CreateExpenseGroupInput {
     name: string;
 }
 
+export interface UpdateExpenseGroupInput {
+    id: string;
+    name: string;
+}
+
 export interface CreateLabelInput {
     label: string;
     isIncome: boolean;
@@ -69,6 +74,7 @@ export interface IMutation {
     updateEntry(updateEntryInput?: Nullable<UpdateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
     deleteEntry(id: number): Nullable<Entry> | Promise<Nullable<Entry>>;
     createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
+    updateExpenseGroup(updateExpenseGroupInput?: Nullable<UpdateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     deleteExpenseGroup(id: number): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
     updateLabel(updateLabelInput?: Nullable<UpdateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;

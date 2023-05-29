@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, ExpenseGroup } from '@prisma/client';
+import { UpdateExpenseGroupInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -26,5 +27,14 @@ export class ExpenseGroupService {
       where: { id: parseInt(id) },
     });
   }
-  // todo: update
+
+  async update(data: UpdateExpenseGroupInput): Promise<ExpenseGroup> {
+    const { id, name } = data;
+    return this.prisma.expenseGroup.update({
+      where: { id: parseInt(id) },
+      data: {
+        name: name ?? undefined,
+      },
+    });
+  }
 }

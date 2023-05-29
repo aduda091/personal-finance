@@ -8,6 +8,10 @@ type Mutation {
     createExpenseGroupInput: CreateExpenseGroupInput
   ): ExpenseGroup
 
+  updateExpenseGroup(
+    updateExpenseGroupInput: UpdateExpenseGroupInput
+  ): ExpenseGroup
+
   deleteExpenseGroup(id: Int!): ExpenseGroup
 }
 
@@ -21,5 +25,10 @@ type ExpenseGroup {
 }
 
 input CreateExpenseGroupInput {
+  name: String!
+}
+
+input UpdateExpenseGroupInput {
+  id: ID!
   name: String!
 }

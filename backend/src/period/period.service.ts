@@ -19,6 +19,7 @@ export class PeriodService {
   }
 
   async create(data: Prisma.PeriodCreateInput): Promise<Period> {
+    // TODO: check if month + year combination already exists
     return this.prisma.period.create({
       data,
     });
@@ -31,6 +32,7 @@ export class PeriodService {
   }
 
   async update(data: UpdatePeriodInput): Promise<Period> {
+    // TODO: check if month + year combination already exists
     const { id, month, year } = data;
     return this.prisma.period.update({
       where: { id: parseInt(id) },
