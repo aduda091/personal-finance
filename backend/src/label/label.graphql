@@ -12,12 +12,12 @@ type Subscription {
 }
 
 type Label {
-  id: Int
-  label: String
-  isIncome: Boolean
+  id: Int!
+  label: String!
+  isIncome: Boolean!
 }
 
 input CreateLabelInput {
-  label: String
-  isIncome: Boolean
+  label: String!
+  isIncome: Boolean!
 }

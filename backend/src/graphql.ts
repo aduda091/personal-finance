@@ -9,25 +9,25 @@
 /* eslint-disable */
 
 export interface CreateEntryInput {
-    value?: Nullable<number>;
-    isIncome?: Nullable<boolean>;
+    value: number;
+    isIncome: boolean;
     period: string;
     label: string;
     expenseGroup: string;
 }
 
 export interface CreateExpenseGroupInput {
-    name?: Nullable<string>;
+    name: string;
 }
 
 export interface CreateLabelInput {
-    label?: Nullable<string>;
-    isIncome?: Nullable<boolean>;
+    label: string;
+    isIncome: boolean;
 }
 
 export interface CreatePeriodInput {
-    month?: Nullable<number>;
-    year?: Nullable<number>;
+    month: number;
+    year: number;
 }
 
 export interface IQuery {
@@ -60,32 +60,32 @@ export interface ISubscription {
 
 export interface Entry {
     __typename?: 'Entry';
-    id?: Nullable<number>;
-    value?: Nullable<number>;
-    isIncome?: Nullable<boolean>;
-    period?: Nullable<Period>;
-    label?: Nullable<Label>;
+    id: number;
+    value: number;
+    isIncome: boolean;
+    period: Period;
+    label: Label;
     expenseGroup?: Nullable<ExpenseGroup>;
 }
 
 export interface ExpenseGroup {
     __typename?: 'ExpenseGroup';
-    id?: Nullable<number>;
-    name?: Nullable<string>;
+    id: number;
+    name: string;
 }
 
 export interface Label {
     __typename?: 'Label';
-    id?: Nullable<number>;
-    label?: Nullable<string>;
-    isIncome?: Nullable<boolean>;
+    id: number;
+    label: string;
+    isIncome: boolean;
 }
 
 export interface Period {
     __typename?: 'Period';
-    id?: Nullable<number>;
-    month?: Nullable<number>;
-    year?: Nullable<number>;
+    id: number;
+    month: number;
+    year: number;
 }
 
 type Nullable<T> = T | null;

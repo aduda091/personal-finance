@@ -12,10 +12,10 @@ type Subscription {
 }
 
 type ExpenseGroup {
-  id: Int
-  name: String
+  id: Int!
+  name: String!
 }
 
 input CreateExpenseGroupInput {
-  name: String
+  name: String!
 }

@@ -12,12 +12,12 @@ type Subscription {
 }
 
 type Period {
-  id: Int
-  month: Int
-  year: Int
+  id: Int!
+  month: Int!
+  year: Int!
 }
 
 input CreatePeriodInput {
-  month: Int
-  year: Int
+  month: Int!
+  year: Int!
 }

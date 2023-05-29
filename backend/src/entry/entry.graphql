@@ -12,17 +12,17 @@ type Subscription {
 }
 
 type Entry {
-  id: Int
-  value: Float
-  isIncome: Boolean
-  period: Period
-  label: Label
+  id: Int!
+  value: Float!
+  isIncome: Boolean!
+  period: Period!
+  label: Label!
   expenseGroup: ExpenseGroup
 }
 
 input CreateEntryInput {
-  value: Float
-  isIncome: Boolean
+  value: Float!
+  isIncome: Boolean!
   period: ID!
   label: ID!
   expenseGroup: ID!
