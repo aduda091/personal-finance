@@ -3,6 +3,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { join } from 'path';
+import { PeriodModule } from './period/period.module';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
   imports: [
@@ -16,8 +18,9 @@ import { join } from 'path';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+    PeriodModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [PrismaService],
 })
 export class AppModule {}

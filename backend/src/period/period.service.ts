@@ -6,11 +6,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class PeriodService {
   constructor(private prisma: PrismaService) {}
 
-  async findOne(
-    periodWhereInput: Prisma.PeriodWhereInput,
-  ): Promise<Period | null> {
-    return this.prisma.period.findFirst({
-      where: periodWhereInput,
+  async findOne(id: string): Promise<Period | null> {
+    return this.prisma.period.findUnique({
+      where: { id: parseInt(id) },
     });
   }
 
@@ -25,5 +23,11 @@ export class PeriodService {
     });
   }
 
-  // todo: update, delete
+  async delete(id: string): Promise<Period> {
+    return this.prisma.period.delete({
+      where: { id: parseInt(id) },
+    });
+  }
+
+  // todo: delete
 }

@@ -5,6 +5,8 @@ type Query {
 
 type Mutation {
   createPeriod(createPeriodInput: CreatePeriodInput): Period
+
+  deletePeriod(id: Int!): Period
 }
 
 type Subscription {

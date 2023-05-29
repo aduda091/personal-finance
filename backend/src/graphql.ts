@@ -48,6 +48,7 @@ export interface IMutation {
     createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
     createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
+    deletePeriod(id: number): Nullable<Period> | Promise<Nullable<Period>>;
 }
 
 export interface ISubscription {
