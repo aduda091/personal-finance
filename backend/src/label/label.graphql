@@ -6,6 +6,8 @@ type Query {
 type Mutation {
   createLabel(createLabelInput: CreateLabelInput): Label
 
+  updateLabel(updateLabelInput: UpdateLabelInput): Label
+
   deleteLabel(id: Int!): Label
 }
 
@@ -22,4 +24,10 @@ type Label {
 input CreateLabelInput {
   label: String!
   isIncome: Boolean!
+}
+
+input UpdateLabelInput {
+  id: ID!
+  label: String
+  isIncome: Boolean
 }

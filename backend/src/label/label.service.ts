@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Label } from '@prisma/client';
+import { UpdateLabelInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -28,5 +29,14 @@ export class LabelService {
     });
   }
 
-  // todo: update
+  async update(data: UpdateLabelInput): Promise<Label> {
+    const { id, label, isIncome } = data;
+    return this.prisma.label.update({
+      where: { id: parseInt(id) },
+      data: {
+        isIncome: isIncome ?? undefined,
+        label: label ?? undefined,
+      },
+    });
+  }
 }

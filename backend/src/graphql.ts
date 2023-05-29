@@ -34,6 +34,12 @@ export interface CreateLabelInput {
     isIncome: boolean;
 }
 
+export interface UpdateLabelInput {
+    id: string;
+    label?: Nullable<string>;
+    isIncome?: Nullable<boolean>;
+}
+
 export interface CreatePeriodInput {
     month: number;
     year: number;
@@ -65,6 +71,7 @@ export interface IMutation {
     createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     deleteExpenseGroup(id: number): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
+    updateLabel(updateLabelInput?: Nullable<UpdateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
     deleteLabel(id: number): Nullable<Label> | Promise<Nullable<Label>>;
     createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
     updatePeriod(updatePeriodInput?: Nullable<UpdatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
