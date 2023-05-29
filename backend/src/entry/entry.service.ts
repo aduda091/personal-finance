@@ -56,7 +56,6 @@ export class EntryService {
 
   async update(data: UpdateEntryInput) {
     const { id, isIncome, value, label, period, expenseGroup } = data;
-    console.log(label, period, expenseGroup);
     return this.prisma.entry.update({
       where: { id: parseInt(id) },
       data: {
