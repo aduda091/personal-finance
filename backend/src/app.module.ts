@@ -5,6 +5,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { join } from 'path';
 import { PeriodModule } from './period/period.module';
 import { PrismaService } from './prisma/prisma.service';
+import { LabelModule } from './label/label.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { PrismaService } from './prisma/prisma.service';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     PeriodModule,
+    LabelModule,
   ],
   controllers: [],
   providers: [PrismaService],

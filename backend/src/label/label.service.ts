@@ -6,11 +6,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class LabelService {
   constructor(private prisma: PrismaService) {}
 
-  async findOne(
-    labelWhereInput: Prisma.LabelWhereInput,
-  ): Promise<Label | null> {
+  async findOne(id: string): Promise<Label | null> {
     return this.prisma.label.findFirst({
-      where: labelWhereInput,
+      where: { id: parseInt(id) },
     });
   }
 
@@ -24,5 +22,11 @@ export class LabelService {
     });
   }
 
-  // todo: update, delete
+  async delete(id: string): Promise<Label> {
+    return this.prisma.label.delete({
+      where: { id: parseInt(id) },
+    });
+  }
+
+  // todo: delete
 }

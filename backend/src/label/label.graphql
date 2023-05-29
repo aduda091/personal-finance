@@ -5,6 +5,8 @@ type Query {
 
 type Mutation {
   createLabel(createLabelInput: CreateLabelInput): Label
+
+  deleteLabel(id: Int!): Label
 }
 
 type Subscription {
