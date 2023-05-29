@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PeriodService } from './period.service';
-import { CreatePeriodInput } from 'src/graphql';
+import { CreatePeriodInput, UpdatePeriodInput } from 'src/graphql';
 
 @Resolver('Period')
 export class PeriodResolver {
@@ -17,8 +17,13 @@ export class PeriodResolver {
   }
 
   @Mutation('createPeriod')
-  async create(@Args('input') input: CreatePeriodInput) {
+  async create(@Args('createPeriodInput') input: CreatePeriodInput) {
     return this.periodService.create(input);
+  }
+
+  @Mutation('updatePeriod')
+  async update(@Args('updatePeriodInput') input: UpdatePeriodInput) {
+    return this.periodService.update(input);
   }
 
   @Mutation('deletePeriod')

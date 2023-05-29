@@ -6,6 +6,8 @@ type Query {
 type Mutation {
   createPeriod(createPeriodInput: CreatePeriodInput): Period
 
+  updatePeriod(updatePeriodInput: UpdatePeriodInput): Period
+
   deletePeriod(id: Int!): Period
 }
 
@@ -22,4 +24,10 @@ type Period {
 input CreatePeriodInput {
   month: Int!
   year: Int!
+}
+
+input UpdatePeriodInput {
+  id: ID!
+  month: Int
+  year: Int
 }

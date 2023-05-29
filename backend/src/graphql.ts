@@ -39,6 +39,12 @@ export interface CreatePeriodInput {
     year: number;
 }
 
+export interface UpdatePeriodInput {
+    id: string;
+    month?: Nullable<number>;
+    year?: Nullable<number>;
+}
+
 export interface IQuery {
     __typename?: 'IQuery';
     entries(): Nullable<Nullable<Entry>[]> | Promise<Nullable<Nullable<Entry>[]>>;
@@ -61,6 +67,7 @@ export interface IMutation {
     createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
     deleteLabel(id: number): Nullable<Label> | Promise<Nullable<Label>>;
     createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
+    updatePeriod(updatePeriodInput?: Nullable<UpdatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
     deletePeriod(id: number): Nullable<Period> | Promise<Nullable<Period>>;
 }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Period } from '@prisma/client';
+import { UpdatePeriodInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -29,5 +30,14 @@ export class PeriodService {
     });
   }
 
-  // todo: update
+  async update(data: UpdatePeriodInput): Promise<Period> {
+    const { id, month, year } = data;
+    return this.prisma.period.update({
+      where: { id: parseInt(id) },
+      data: {
+        month: month ?? undefined,
+        year: year ?? undefined,
+      },
+    });
+  }
 }
