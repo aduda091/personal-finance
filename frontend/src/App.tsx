@@ -1,31 +1,43 @@
-import { Layout, Col, Row, Space } from "antd";
+import { Layout, Space, Menu } from "antd";
+import type { MenuProps } from "antd";
+import { PieChartOutlined, TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 
 const { Header, Content, Sider, Footer } = Layout;
 
+type MenuItem = Required<MenuProps>["items"][number];
+
+// TODO: add router links
+function createMenuItem(
+    label: React.ReactNode,
+    key: React.Key,
+    icon?: React.ReactNode,
+    children?: MenuItem[],
+    type?: "group"
+): MenuItem {
+    return {
+        key,
+        icon,
+        children,
+        label,
+        type
+    } as MenuItem;
+}
+
+const menuItems: MenuItem[] = [
+    createMenuItem("Monthly Table", "monthly-table", <TableOutlined />),
+    createMenuItem("Charts", "charts", <PieChartOutlined />),
+    createMenuItem("Manage Labels", "labels", <UnorderedListOutlined />)
+];
 function App() {
     const [collapsed, setCollapsed] = useState(false);
     return (
         <>
             <Layout>
                 <Header style={{ color: "white" }}>
-                    <Row justify="space-between">
-                        <Col span={18}>
-                            <Space>
-                                <h1>Personal Finance App</h1>
-                            </Space>
-                        </Col>
-                        <Col
-                            span={6}
-                            style={{
-                                textAlign: "right"
-                            }}
-                        >
-                            <Space size="large" align="end">
-                                Period: Date picker goes here? Or in content?
-                            </Space>
-                        </Col>
-                    </Row>
+                    <Space>
+                        <h1>Personal Finance App</h1>
+                    </Space>
                 </Header>
                 <Layout>
                     <Sider
@@ -34,7 +46,13 @@ function App() {
                         onCollapse={value => setCollapsed(value)}
                         style={{ color: "white", height: "100vh" }}
                     >
-                        Sidebar
+                        <Menu
+                            theme="dark"
+                            mode="inline"
+                            // TODO: read from router
+                            defaultSelectedKeys={["monthly-table"]}
+                            items={menuItems}
+                        ></Menu>
                     </Sider>
                     <Layout style={{ padding: "0 24px 24px" }}>
                         <Content
@@ -44,7 +62,7 @@ function App() {
                                 minHeight: 280
                             }}
                         >
-                            Content
+                            Content component placeholder
                         </Content>
                         <Footer style={{ textAlign: "center", color: "white" }}>Footer</Footer>
                     </Layout>
