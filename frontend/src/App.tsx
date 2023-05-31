@@ -1,13 +1,14 @@
 import { Layout, Space, Menu } from "antd";
 import type { MenuProps } from "antd";
 import { PieChartOutlined, TableOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { Outlet, Link, useLocation } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { RouteKeys, RoutePaths } from "./constants/routes";
 
 const { Header, Content, Sider, Footer } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
-// TODO: add router links
 function createMenuItem(
     label: React.ReactNode,
     key: React.Key,
@@ -20,17 +21,24 @@ function createMenuItem(
         icon,
         children,
         label,
-        type
+        type,
     } as MenuItem;
 }
 
 const menuItems: MenuItem[] = [
-    createMenuItem("Monthly Table", "monthly-table", <TableOutlined />),
-    createMenuItem("Charts", "charts", <PieChartOutlined />),
-    createMenuItem("Manage Labels", "labels", <UnorderedListOutlined />)
+    createMenuItem(<Link to={RoutePaths.MONTHLY}>Monthly Table</Link>, RouteKeys.MONTHLY, <TableOutlined />),
+    createMenuItem(<Link to={RoutePaths.CHARTS}>Charts</Link>, RouteKeys.CHARTS, <PieChartOutlined />),
+    createMenuItem(<Link to={RoutePaths.LABELS}>Manage Labels</Link>, RouteKeys.LABELS, <UnorderedListOutlined />),
 ];
 function App() {
     const [collapsed, setCollapsed] = useState(false);
+    const { pathname } = useLocation();
+
+    const defaultSelectedKeys = useMemo(() => {
+        const activePathKeyIndex = Object.values(RoutePaths).indexOf(pathname as RoutePaths);
+        return Object.values(RouteKeys)[activePathKeyIndex] ?? RouteKeys.MONTHLY;
+    }, [pathname]);
+
     return (
         <>
             <Layout>
@@ -49,8 +57,7 @@ function App() {
                         <Menu
                             theme="dark"
                             mode="inline"
-                            // TODO: read from router
-                            defaultSelectedKeys={["monthly-table"]}
+                            defaultSelectedKeys={[defaultSelectedKeys]}
                             items={menuItems}
                         ></Menu>
                     </Sider>
@@ -59,10 +66,10 @@ function App() {
                             style={{
                                 padding: 24,
                                 margin: 0,
-                                minHeight: 280
+                                minHeight: 280,
                             }}
                         >
-                            Content component placeholder
+                            <Outlet />
                         </Content>
                         <Footer style={{ textAlign: "center", color: "white" }}>Footer</Footer>
                     </Layout>
