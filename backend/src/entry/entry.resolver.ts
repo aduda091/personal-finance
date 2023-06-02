@@ -11,6 +11,8 @@ export class EntryResolver {
     return this.entryService.findAll();
   }
 
+  // TODO: entries filtered by period ID
+
   @Query('entry')
   async findOne(@Args('id') id: string) {
     return this.entryService.findOne(id);
