@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import { Button, Space, Table } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
+import { ExpenseGroup, ExpenseGroupsQuery } from "../../gql/graphql";
 
 const EXPENSE_GROUPS_QUERY = gql`
     query ExpenseGroups {
@@ -13,19 +13,7 @@ const EXPENSE_GROUPS_QUERY = gql`
     }
 `;
 
-// TODO: auto-generate from graphql
-interface ExpenseGroup {
-    key?: string;
-    id: string;
-    name: string;
-}
-
-const columns: ColumnsType<ExpenseGroup> = [
-    {
-        key: "id",
-        title: "Index",
-        dataIndex: "id"
-    },
+const columns = [
     {
         key: "name",
         title: "Name",
@@ -34,7 +22,7 @@ const columns: ColumnsType<ExpenseGroup> = [
     {
         key: "actions",
         title: "Actions",
-        render: (_, record) => {
+        render: (_: unknown, record: ExpenseGroup) => {
             return (
                 <>
                     <Space>
@@ -61,7 +49,7 @@ const columns: ColumnsType<ExpenseGroup> = [
 ];
 
 const ExpenseGroupsTable = () => {
-    const { data, loading, error } = useQuery<{ expenseGroups: ExpenseGroup[] }>(EXPENSE_GROUPS_QUERY);
+    const { data, loading, error } = useQuery<ExpenseGroupsQuery>(EXPENSE_GROUPS_QUERY);
 
     const dataSource = useMemo(() => data?.expenseGroups?.map(({ id, name }) => ({ key: id, id, name })) ?? [], [data]);
 

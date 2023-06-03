@@ -60,7 +60,7 @@ export interface IQuery {
     __typename?: 'IQuery';
     entries(): Nullable<Nullable<Entry>[]> | Promise<Nullable<Nullable<Entry>[]>>;
     entry(id: string): Nullable<Entry> | Promise<Nullable<Entry>>;
-    expenseGroups(): Nullable<Nullable<ExpenseGroup>[]> | Promise<Nullable<Nullable<ExpenseGroup>[]>>;
+    expenseGroups(): Nullable<ExpenseGroup[]> | Promise<Nullable<ExpenseGroup[]>>;
     expenseGroup(id: string): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     labels(): Nullable<Nullable<Label>[]> | Promise<Nullable<Nullable<Label>[]>>;
     label(id: string): Nullable<Label> | Promise<Nullable<Label>>;

@@ -1,5 +1,5 @@
 type Query {
-  expenseGroups: [ExpenseGroup]
+  expenseGroups: [ExpenseGroup!]
   expenseGroup(id: ID!): ExpenseGroup
 }
 
