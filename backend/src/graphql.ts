@@ -58,29 +58,29 @@ export interface UpdatePeriodInput {
 
 export interface IQuery {
     __typename?: 'IQuery';
-    entries(): Nullable<Nullable<Entry>[]> | Promise<Nullable<Nullable<Entry>[]>>;
+    entries(): Nullable<Entry[]> | Promise<Nullable<Entry[]>>;
     entry(id: string): Nullable<Entry> | Promise<Nullable<Entry>>;
     expenseGroups(): Nullable<ExpenseGroup[]> | Promise<Nullable<ExpenseGroup[]>>;
     expenseGroup(id: string): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
-    labels(): Nullable<Nullable<Label>[]> | Promise<Nullable<Nullable<Label>[]>>;
+    labels(): Nullable<Label[]> | Promise<Nullable<Label[]>>;
     label(id: string): Nullable<Label> | Promise<Nullable<Label>>;
-    periods(): Nullable<Nullable<Period>[]> | Promise<Nullable<Nullable<Period>[]>>;
+    periods(): Nullable<Period[]> | Promise<Nullable<Period[]>>;
     period(id: string): Nullable<Period> | Promise<Nullable<Period>>;
 }
 
 export interface IMutation {
     __typename?: 'IMutation';
-    createEntry(createEntryInput?: Nullable<CreateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
-    updateEntry(updateEntryInput?: Nullable<UpdateEntryInput>): Nullable<Entry> | Promise<Nullable<Entry>>;
+    createEntry(createEntryInput?: Nullable<CreateEntryInput>): Entry | Promise<Entry>;
+    updateEntry(updateEntryInput?: Nullable<UpdateEntryInput>): Entry | Promise<Entry>;
     deleteEntry(id: number): Nullable<Entry> | Promise<Nullable<Entry>>;
-    createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
-    updateExpenseGroup(updateExpenseGroupInput?: Nullable<UpdateExpenseGroupInput>): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
+    createExpenseGroup(createExpenseGroupInput?: Nullable<CreateExpenseGroupInput>): ExpenseGroup | Promise<ExpenseGroup>;
+    updateExpenseGroup(updateExpenseGroupInput?: Nullable<UpdateExpenseGroupInput>): ExpenseGroup | Promise<ExpenseGroup>;
     deleteExpenseGroup(id: number): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
-    createLabel(createLabelInput?: Nullable<CreateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
-    updateLabel(updateLabelInput?: Nullable<UpdateLabelInput>): Nullable<Label> | Promise<Nullable<Label>>;
+    createLabel(createLabelInput?: Nullable<CreateLabelInput>): Label | Promise<Label>;
+    updateLabel(updateLabelInput?: Nullable<UpdateLabelInput>): Label | Promise<Label>;
     deleteLabel(id: number): Nullable<Label> | Promise<Nullable<Label>>;
-    createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
-    updatePeriod(updatePeriodInput?: Nullable<UpdatePeriodInput>): Nullable<Period> | Promise<Nullable<Period>>;
+    createPeriod(createPeriodInput?: Nullable<CreatePeriodInput>): Period | Promise<Period>;
+    updatePeriod(updatePeriodInput?: Nullable<UpdatePeriodInput>): Period | Promise<Period>;
     deletePeriod(id: number): Nullable<Period> | Promise<Nullable<Period>>;
 }
 

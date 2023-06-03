@@ -63,18 +63,18 @@ export type Label = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createEntry?: Maybe<Entry>;
-  createExpenseGroup?: Maybe<ExpenseGroup>;
-  createLabel?: Maybe<Label>;
-  createPeriod?: Maybe<Period>;
+  createEntry: Entry;
+  createExpenseGroup: ExpenseGroup;
+  createLabel: Label;
+  createPeriod: Period;
   deleteEntry?: Maybe<Entry>;
   deleteExpenseGroup?: Maybe<ExpenseGroup>;
   deleteLabel?: Maybe<Label>;
   deletePeriod?: Maybe<Period>;
-  updateEntry?: Maybe<Entry>;
-  updateExpenseGroup?: Maybe<ExpenseGroup>;
-  updateLabel?: Maybe<Label>;
-  updatePeriod?: Maybe<Period>;
+  updateEntry: Entry;
+  updateExpenseGroup: ExpenseGroup;
+  updateLabel: Label;
+  updatePeriod: Period;
 };
 
 
@@ -146,14 +146,14 @@ export type Period = {
 
 export type Query = {
   __typename?: 'Query';
-  entries?: Maybe<Array<Maybe<Entry>>>;
+  entries?: Maybe<Array<Entry>>;
   entry?: Maybe<Entry>;
   expenseGroup?: Maybe<ExpenseGroup>;
   expenseGroups?: Maybe<Array<ExpenseGroup>>;
   label?: Maybe<Label>;
-  labels?: Maybe<Array<Maybe<Label>>>;
+  labels?: Maybe<Array<Label>>;
   period?: Maybe<Period>;
-  periods?: Maybe<Array<Maybe<Period>>>;
+  periods?: Maybe<Array<Period>>;
 };
 
 
@@ -215,14 +215,14 @@ export type CreateExpenseGroupMutationVariables = Exact<{
 }>;
 
 
-export type CreateExpenseGroupMutation = { __typename?: 'Mutation', createExpenseGroup?: { __typename?: 'ExpenseGroup', id: number, name: string } | null };
+export type CreateExpenseGroupMutation = { __typename?: 'Mutation', createExpenseGroup: { __typename?: 'ExpenseGroup', id: number, name: string } };
 
 export type UpdateExpenseGroupMutationVariables = Exact<{
   updateExpenseGroupInput?: InputMaybe<UpdateExpenseGroupInput>;
 }>;
 
 
-export type UpdateExpenseGroupMutation = { __typename?: 'Mutation', updateExpenseGroup?: { __typename?: 'ExpenseGroup', id: number, name: string } | null };
+export type UpdateExpenseGroupMutation = { __typename?: 'Mutation', updateExpenseGroup: { __typename?: 'ExpenseGroup', id: number, name: string } };
 
 export type ExpenseGroupsQueryVariables = Exact<{ [key: string]: never; }>;
 

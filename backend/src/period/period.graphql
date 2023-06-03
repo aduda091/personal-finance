@@ -1,12 +1,12 @@
 type Query {
-  periods: [Period]
+  periods: [Period!]
   period(id: ID!): Period
 }
 
 type Mutation {
-  createPeriod(createPeriodInput: CreatePeriodInput): Period
+  createPeriod(createPeriodInput: CreatePeriodInput): Period!
 
-  updatePeriod(updatePeriodInput: UpdatePeriodInput): Period
+  updatePeriod(updatePeriodInput: UpdatePeriodInput): Period!
 
   deletePeriod(id: Int!): Period
 }

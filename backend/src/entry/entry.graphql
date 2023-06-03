@@ -1,11 +1,11 @@
 type Query {
-  entries: [Entry]
+  entries: [Entry!]
   entry(id: ID!): Entry
 }
 
 type Mutation {
-  createEntry(createEntryInput: CreateEntryInput): Entry
-  updateEntry(updateEntryInput: UpdateEntryInput): Entry
+  createEntry(createEntryInput: CreateEntryInput): Entry!
+  updateEntry(updateEntryInput: UpdateEntryInput): Entry!
   deleteEntry(id: Int!): Entry
 }
 

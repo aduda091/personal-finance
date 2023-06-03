@@ -6,11 +6,11 @@ type Query {
 type Mutation {
   createExpenseGroup(
     createExpenseGroupInput: CreateExpenseGroupInput
-  ): ExpenseGroup
+  ): ExpenseGroup!
 
   updateExpenseGroup(
     updateExpenseGroupInput: UpdateExpenseGroupInput
-  ): ExpenseGroup
+  ): ExpenseGroup!
 
   deleteExpenseGroup(id: Int!): ExpenseGroup
 }
