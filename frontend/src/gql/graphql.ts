@@ -210,10 +210,34 @@ export type UpdatePeriodInput = {
   year?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type CreateExpenseGroupMutationVariables = Exact<{
+  createExpenseGroupInput?: InputMaybe<CreateExpenseGroupInput>;
+}>;
+
+
+export type CreateExpenseGroupMutation = { __typename?: 'Mutation', createExpenseGroup?: { __typename?: 'ExpenseGroup', id: number, name: string } | null };
+
+export type UpdateExpenseGroupMutationVariables = Exact<{
+  updateExpenseGroupInput?: InputMaybe<UpdateExpenseGroupInput>;
+}>;
+
+
+export type UpdateExpenseGroupMutation = { __typename?: 'Mutation', updateExpenseGroup?: { __typename?: 'ExpenseGroup', id: number, name: string } | null };
+
 export type ExpenseGroupsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ExpenseGroupsQuery = { __typename?: 'Query', expenseGroups?: Array<{ __typename?: 'ExpenseGroup', id: number, name: string }> | null };
 
+export type DeleteExpenseGroupMutationVariables = Exact<{
+  deleteExpenseGroupId: Scalars['Int']['input'];
+}>;
 
+
+export type DeleteExpenseGroupMutation = { __typename?: 'Mutation', deleteExpenseGroup?: { __typename?: 'ExpenseGroup', id: number } | null };
+
+
+export const CreateExpenseGroupDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateExpenseGroup"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createExpenseGroupInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateExpenseGroupInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createExpenseGroup"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createExpenseGroupInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createExpenseGroupInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CreateExpenseGroupMutation, CreateExpenseGroupMutationVariables>;
+export const UpdateExpenseGroupDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateExpenseGroup"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"updateExpenseGroupInput"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"UpdateExpenseGroupInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateExpenseGroup"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"updateExpenseGroupInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"updateExpenseGroupInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UpdateExpenseGroupMutation, UpdateExpenseGroupMutationVariables>;
 export const ExpenseGroupsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ExpenseGroups"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"expenseGroups"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ExpenseGroupsQuery, ExpenseGroupsQueryVariables>;
+export const DeleteExpenseGroupDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DeleteExpenseGroup"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteExpenseGroupId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteExpenseGroup"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteExpenseGroupId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]} as unknown as DocumentNode<DeleteExpenseGroupMutation, DeleteExpenseGroupMutationVariables>;

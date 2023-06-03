@@ -1,10 +1,16 @@
 import { Modal, ModalFuncProps, Form, Input, Button, notification } from "antd";
 import { FC } from "react";
-import { ExpenseGroup } from "../../gql/graphql";
+import {
+    CreateExpenseGroupMutation,
+    CreateExpenseGroupMutationVariables,
+    UpdateExpenseGroupMutation,
+    UpdateExpenseGroupMutationVariables,
+    ExpenseGroup
+} from "../../gql/graphql";
 import { gql, useMutation } from "@apollo/client";
 
 const CREATE_EXPENSE_GROUP_MUTATION = gql`
-    mutation UpdateExpenseGroup($createExpenseGroupInput: CreateExpenseGroupInput) {
+    mutation CreateExpenseGroup($createExpenseGroupInput: CreateExpenseGroupInput) {
         createExpenseGroup(createExpenseGroupInput: $createExpenseGroupInput) {
             id
             name
@@ -28,10 +34,17 @@ export interface ExpenseGroupsModalProps extends ModalFuncProps {
 const ExpenseGroupsModal: FC<ExpenseGroupsModalProps> = props => {
     const { editObject, ...rest } = props;
 
-    const [createExpenseGroup, { loading: createLoading }] = useMutation(CREATE_EXPENSE_GROUP_MUTATION);
-    const [updateExpenseGroup, { loading: updateLoading }] = useMutation(UPDATE_EXPENSE_GROUP_MUTATION);
+    const [createExpenseGroup, { loading: createLoading }] = useMutation<
+        CreateExpenseGroupMutation,
+        CreateExpenseGroupMutationVariables
+    >(CREATE_EXPENSE_GROUP_MUTATION);
+    const [updateExpenseGroup, { loading: updateLoading }] = useMutation<
+        UpdateExpenseGroupMutation,
+        UpdateExpenseGroupMutationVariables
+    >(UPDATE_EXPENSE_GROUP_MUTATION);
 
     const onSubmit = (data: Partial<ExpenseGroup>) => {
+        if (!data.name) return;
         if (editObject) {
             updateExpenseGroup({
                 variables: {

@@ -13,7 +13,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n    mutation CreateExpenseGroup($createExpenseGroupInput: CreateExpenseGroupInput) {\n        createExpenseGroup(createExpenseGroupInput: $createExpenseGroupInput) {\n            id\n            name\n        }\n    }\n": types.CreateExpenseGroupDocument,
+    "\n    mutation UpdateExpenseGroup($updateExpenseGroupInput: UpdateExpenseGroupInput) {\n        updateExpenseGroup(updateExpenseGroupInput: $updateExpenseGroupInput) {\n            id\n            name\n        }\n    }\n": types.UpdateExpenseGroupDocument,
     "\n    query ExpenseGroups {\n        expenseGroups {\n            id\n            name\n        }\n    }\n": types.ExpenseGroupsDocument,
+    "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n": types.DeleteExpenseGroupDocument,
 };
 
 /**
@@ -33,7 +36,19 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n    mutation CreateExpenseGroup($createExpenseGroupInput: CreateExpenseGroupInput) {\n        createExpenseGroup(createExpenseGroupInput: $createExpenseGroupInput) {\n            id\n            name\n        }\n    }\n"): (typeof documents)["\n    mutation CreateExpenseGroup($createExpenseGroupInput: CreateExpenseGroupInput) {\n        createExpenseGroup(createExpenseGroupInput: $createExpenseGroupInput) {\n            id\n            name\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation UpdateExpenseGroup($updateExpenseGroupInput: UpdateExpenseGroupInput) {\n        updateExpenseGroup(updateExpenseGroupInput: $updateExpenseGroupInput) {\n            id\n            name\n        }\n    }\n"): (typeof documents)["\n    mutation UpdateExpenseGroup($updateExpenseGroupInput: UpdateExpenseGroupInput) {\n        updateExpenseGroup(updateExpenseGroupInput: $updateExpenseGroupInput) {\n            id\n            name\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n    query ExpenseGroups {\n        expenseGroups {\n            id\n            name\n        }\n    }\n"): (typeof documents)["\n    query ExpenseGroups {\n        expenseGroups {\n            id\n            name\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
