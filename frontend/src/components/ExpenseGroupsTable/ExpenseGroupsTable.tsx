@@ -77,7 +77,7 @@ const ExpenseGroupsTable = () => {
                             </Button>{" "}
                             <Popconfirm
                                 title="Delete the expense group"
-                                description="Are you sure to delete this expense group?"
+                                description="Are you sure you want to delete this expense group?"
                                 onConfirm={() => deleteExpenseGroupHandler(record.id)}
                                 okText="Yes"
                                 cancelText="Cancel"

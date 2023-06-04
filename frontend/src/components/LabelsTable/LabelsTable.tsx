@@ -51,7 +51,7 @@ const LabelsTable = () => {
     const [deleteLabel, { loading: deleteLoading }] = useMutation(DELETE_LABEL_MUTATION);
 
     const deleteLabelHandler = (id: number) => {
-        deleteLabel({ variables: { deleteLabelId: id }, refetchQueries: ["Label"] }).then(() => {
+        deleteLabel({ variables: { deleteLabelId: id }, refetchQueries: ["Labels"] }).then(() => {
             notification.info({ message: "Label group deleted" });
         });
     };
@@ -87,7 +87,7 @@ const LabelsTable = () => {
                             </Button>{" "}
                             <Popconfirm
                                 title="Delete the label"
-                                description="Are you sure to delete this label?"
+                                description="Are you sure you want to delete this label?"
                                 onConfirm={() => deleteLabelHandler(record.id)}
                                 okText="Yes"
                                 cancelText="Cancel"
