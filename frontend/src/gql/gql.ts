@@ -17,6 +17,10 @@ const documents = {
     "\n    mutation UpdateExpenseGroup($updateExpenseGroupInput: UpdateExpenseGroupInput) {\n        updateExpenseGroup(updateExpenseGroupInput: $updateExpenseGroupInput) {\n            id\n            name\n        }\n    }\n": types.UpdateExpenseGroupDocument,
     "\n    query ExpenseGroups {\n        expenseGroups {\n            id\n            name\n        }\n    }\n": types.ExpenseGroupsDocument,
     "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n": types.DeleteExpenseGroupDocument,
+    "\n    mutation CreateLabel($createLabelInput: CreateLabelInput) {\n        createLabel(createLabelInput: $createLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n": types.CreateLabelDocument,
+    "\n    mutation UpdateLabel($updateLabelInput: UpdateLabelInput) {\n        updateLabel(updateLabelInput: $updateLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n": types.UpdateLabelDocument,
+    "\n    query Labels {\n        labels {\n            id\n            label\n            isIncome\n        }\n    }\n": types.LabelsDocument,
+    "\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n": types.DeleteLabelDocument,
 };
 
 /**
@@ -49,6 +53,22 @@ export function graphql(source: "\n    query ExpenseGroups {\n        expenseGro
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation CreateLabel($createLabelInput: CreateLabelInput) {\n        createLabel(createLabelInput: $createLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n"): (typeof documents)["\n    mutation CreateLabel($createLabelInput: CreateLabelInput) {\n        createLabel(createLabelInput: $createLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation UpdateLabel($updateLabelInput: UpdateLabelInput) {\n        updateLabel(updateLabelInput: $updateLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n"): (typeof documents)["\n    mutation UpdateLabel($updateLabelInput: UpdateLabelInput) {\n        updateLabel(updateLabelInput: $updateLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query Labels {\n        labels {\n            id\n            label\n            isIncome\n        }\n    }\n"): (typeof documents)["\n    query Labels {\n        labels {\n            id\n            label\n            isIncome\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

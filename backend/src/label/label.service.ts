@@ -14,7 +14,11 @@ export class LabelService {
   }
 
   async findAll(): Promise<Label[]> {
-    return this.prisma.label.findMany();
+    return this.prisma.label.findMany({
+      orderBy: {
+        isIncome: 'desc',
+      },
+    });
   }
 
   async create(data: Prisma.LabelCreateInput): Promise<Label> {

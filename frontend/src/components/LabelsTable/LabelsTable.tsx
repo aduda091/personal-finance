@@ -2,29 +2,30 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { Button, Popconfirm, Space, Table, notification } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMemo, useState } from "react";
-import { ExpenseGroup, ExpenseGroupsQuery } from "../../gql/graphql";
-import ExpenseGroupsModal from "../ExpenseGroupsModal/ExpenseGroupsModal";
+import { Label, LabelsQuery } from "../../gql/graphql";
+import LabelModal from "../LabelsModal/LabelsModal";
 
-const EXPENSE_GROUPS_QUERY = gql`
-    query ExpenseGroups {
-        expenseGroups {
+const LABEL_GROUPS_QUERY = gql`
+    query Labels {
+        labels {
             id
-            name
+            label
+            isIncome
         }
     }
 `;
 
-const DELETE_EXPENSE_GROUP_MUTATION = gql`
-    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {
-        deleteExpenseGroup(id: $deleteExpenseGroupId) {
+const DELETE_LABEL_MUTATION = gql`
+    mutation DeleteLabel($deleteLabelId: Int!) {
+        deleteLabel(id: $deleteLabelId) {
             id
         }
     }
 `;
 
-const ExpenseGroupsTable = () => {
+const LabelsTable = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editObject, setEditObject] = useState<ExpenseGroup | null>(null);
+    const [editObject, setEditObject] = useState<Label | null>(null);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -40,28 +41,37 @@ const ExpenseGroupsTable = () => {
         setEditObject(null);
     };
 
-    const { data, loading, error } = useQuery<ExpenseGroupsQuery>(EXPENSE_GROUPS_QUERY);
+    const { data, loading, error } = useQuery<LabelsQuery>(LABEL_GROUPS_QUERY);
 
-    const dataSource = useMemo(() => data?.expenseGroups?.map(({ id, name }) => ({ key: id, id, name })) ?? [], [data]);
+    const dataSource = useMemo(
+        () => data?.labels?.map(({ id, label, isIncome }) => ({ key: id, id, label, isIncome })) ?? [],
+        [data]
+    );
 
-    const [deleteExpenseGroup, { loading: deleteLoading }] = useMutation(DELETE_EXPENSE_GROUP_MUTATION);
+    const [deleteLabel, { loading: deleteLoading }] = useMutation(DELETE_LABEL_MUTATION);
 
-    const deleteExpenseGroupHandler = (id: number) => {
-        deleteExpenseGroup({ variables: { deleteExpenseGroupId: id }, refetchQueries: ["ExpenseGroups"] }).then(() => {
-            notification.info({ message: "Expense group deleted" });
+    const deleteLabelHandler = (id: number) => {
+        deleteLabel({ variables: { deleteLabelId: id }, refetchQueries: ["Label"] }).then(() => {
+            notification.info({ message: "Label group deleted" });
         });
     };
 
     const columns = [
         {
-            key: "name",
-            title: "Name",
-            dataIndex: "name"
+            key: "label",
+            title: "Label",
+            dataIndex: "label"
+        },
+        {
+            key: "isIncome",
+            title: "Is income?",
+            dataIndex: "isIncome",
+            render: (isIncome: boolean) => (isIncome ? "Yes" : "No")
         },
         {
             key: "actions",
             title: "Actions",
-            render: (_: unknown, record: ExpenseGroup) => {
+            render: (_: unknown, record: Label) => {
                 return (
                     <>
                         <Space>
@@ -76,9 +86,9 @@ const ExpenseGroupsTable = () => {
                                 Edit
                             </Button>{" "}
                             <Popconfirm
-                                title="Delete the expense group"
-                                description="Are you sure to delete this expense group?"
-                                onConfirm={() => deleteExpenseGroupHandler(record.id)}
+                                title="Delete the label"
+                                description="Are you sure to delete this label?"
+                                onConfirm={() => deleteLabelHandler(record.id)}
                                 okText="Yes"
                                 cancelText="Cancel"
                             >
@@ -94,17 +104,17 @@ const ExpenseGroupsTable = () => {
     ];
 
     if (error) {
-        return <h3>Error fetching expense groups</h3>;
+        return <h3>Error fetching labels</h3>;
     }
     return (
         <div>
             <h3>
-                Expense groups <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()} />
+                Labels <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()} />
             </h3>
             <Table columns={columns} dataSource={dataSource} loading={loading || deleteLoading} pagination={false} />
-            <ExpenseGroupsModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} editObject={editObject} />
+            <LabelModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} editObject={editObject} />
         </div>
     );
 };
 
-export default ExpenseGroupsTable;
+export default LabelsTable;
