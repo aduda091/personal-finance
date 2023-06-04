@@ -4,6 +4,7 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMemo, useState } from "react";
 import { Label, LabelsQuery } from "../../gql/graphql";
 import LabelModal from "../LabelsModal/LabelsModal";
+import { AlignType } from 'rc-table/lib/interface';
 
 const LABEL_GROUPS_QUERY = gql`
     query Labels {
@@ -70,7 +71,8 @@ const LabelsTable = () => {
         },
         {
             key: "actions",
-            title: "Actions",
+            title: "",
+            align: "right" as AlignType,
             render: (_: unknown, record: Label) => {
                 return (
                     <>

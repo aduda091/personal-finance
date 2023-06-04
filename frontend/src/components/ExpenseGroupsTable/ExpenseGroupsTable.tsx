@@ -4,6 +4,7 @@ import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMemo, useState } from "react";
 import { ExpenseGroup, ExpenseGroupsQuery } from "../../gql/graphql";
 import ExpenseGroupsModal from "../ExpenseGroupsModal/ExpenseGroupsModal";
+import { AlignType } from 'rc-table/lib/interface';
 
 const EXPENSE_GROUPS_QUERY = gql`
     query ExpenseGroups {
@@ -60,7 +61,8 @@ const ExpenseGroupsTable = () => {
         },
         {
             key: "actions",
-            title: "Actions",
+            title: "",
+            align: "right" as AlignType,
             render: (_: unknown, record: ExpenseGroup) => {
                 return (
                     <>
