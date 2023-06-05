@@ -89,7 +89,7 @@ const PeriodsTable = () => {
                             </Button>{" "}
                             <Popconfirm
                                 title="Delete the period"
-                                description="Are you sure you want to delete this period?"
+                                description="Are you sure you want to delete this period? This will also delete all entries associated with this period."
                                 onConfirm={() => deletePeriodHandler(record.id)}
                                 okText="Yes"
                                 cancelText="Cancel"

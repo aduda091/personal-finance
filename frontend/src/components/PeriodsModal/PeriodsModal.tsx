@@ -55,10 +55,14 @@ const PeriodsModal: FC<PeriodsModalProps> = props => {
                     },
                 },
                 refetchQueries: ["Periods"],
-            }).then(() => {
-                props.onOk?.();
-                notification.success({ message: "Period updated" });
-            });
+            })
+                .then(() => {
+                    props.onOk?.();
+                    notification.success({ message: "Period updated" });
+                })
+                .catch(error => {
+                    notification.error({ message: `Failed to update period - ${error}` });
+                });
         } else {
             createPeriod({
                 variables: {
@@ -68,10 +72,14 @@ const PeriodsModal: FC<PeriodsModalProps> = props => {
                     },
                 },
                 refetchQueries: ["Periods"],
-            }).then(() => {
-                props.onOk?.();
-                notification.success({ message: "Period created" });
-            });
+            })
+                .then(() => {
+                    props.onOk?.();
+                    notification.success({ message: "Period created" });
+                })
+                .catch(error => {
+                    notification.error({ message: `Failed to create period - ${error}` });
+                });
         }
     };
 

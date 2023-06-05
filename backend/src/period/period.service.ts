@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { Prisma, Period } from '@prisma/client';
 import { UpdatePeriodInput } from 'src/graphql';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -14,7 +14,6 @@ export class PeriodService {
   }
 
   async findAll(): Promise<Period[]> {
-    // todo: order by?
     return this.prisma.period.findMany({
       orderBy: [
         {
@@ -28,22 +27,60 @@ export class PeriodService {
   }
 
   async create(data: Prisma.PeriodCreateInput): Promise<Period> {
-    // TODO: check if month + year combination already exists
+    const { month, year } = data;
+    const existingPeriod = await this.prisma.period.findFirst({
+      where: {
+        AND: [
+          {
+            month: month,
+          },
+          {
+            year: year,
+          },
+        ],
+      },
+    });
+    if (existingPeriod) {
+      throw new HttpException(
+        'Period with these parameters already exists',
+        409,
+      );
+    }
     return this.prisma.period.create({
       data,
     });
   }
 
   async delete(id: string): Promise<Period> {
-    // TODO: delete all entries associated with this period
+    // delete all entries associated with this period
+    await this.prisma.entry.deleteMany({
+      where: { periodId: parseInt(id) },
+    });
     return this.prisma.period.delete({
       where: { id: parseInt(id) },
     });
   }
 
   async update(data: UpdatePeriodInput): Promise<Period> {
-    // TODO: check if month + year combination already exists
     const { id, month, year } = data;
+    const existingPeriod = await this.prisma.period.findFirst({
+      where: {
+        AND: [
+          {
+            month: month,
+          },
+          {
+            year: year,
+          },
+        ],
+      },
+    });
+    if (existingPeriod) {
+      throw new HttpException(
+        'Period with these parameters already exists',
+        409,
+      );
+    }
     return this.prisma.period.update({
       where: { id: parseInt(id) },
       data: {
