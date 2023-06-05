@@ -21,6 +21,10 @@ const documents = {
     "\n    mutation UpdateLabel($updateLabelInput: UpdateLabelInput) {\n        updateLabel(updateLabelInput: $updateLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n": types.UpdateLabelDocument,
     "\n    query Labels {\n        labels {\n            id\n            label\n            isIncome\n        }\n    }\n": types.LabelsDocument,
     "\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n": types.DeleteLabelDocument,
+    "\n    mutation CreatePeriod($createPeriodInput: CreatePeriodInput) {\n        createPeriod(createPeriodInput: $createPeriodInput) {\n            id\n            month\n            year\n        }\n    }\n": types.CreatePeriodDocument,
+    "\n    mutation UpdatePeriod($updatePeriodInput: UpdatePeriodInput) {\n        updatePeriod(updatePeriodInput: $updatePeriodInput) {\n            id\n            month\n            year\n        }\n    }\n": types.UpdatePeriodDocument,
+    "\n    query Periods {\n        periods {\n            id\n            month\n            year\n        }\n    }\n": types.PeriodsDocument,
+    "\n    mutation DeletePeriod($deletePeriodId: Int!) {\n        deletePeriod(id: $deletePeriodId) {\n            id\n        }\n    }\n": types.DeletePeriodDocument,
 };
 
 /**
@@ -69,6 +73,22 @@ export function graphql(source: "\n    query Labels {\n        labels {\n       
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeleteLabel($deleteLabelId: Int!) {\n        deleteLabel(id: $deleteLabelId) {\n            id\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation CreatePeriod($createPeriodInput: CreatePeriodInput) {\n        createPeriod(createPeriodInput: $createPeriodInput) {\n            id\n            month\n            year\n        }\n    }\n"): (typeof documents)["\n    mutation CreatePeriod($createPeriodInput: CreatePeriodInput) {\n        createPeriod(createPeriodInput: $createPeriodInput) {\n            id\n            month\n            year\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation UpdatePeriod($updatePeriodInput: UpdatePeriodInput) {\n        updatePeriod(updatePeriodInput: $updatePeriodInput) {\n            id\n            month\n            year\n        }\n    }\n"): (typeof documents)["\n    mutation UpdatePeriod($updatePeriodInput: UpdatePeriodInput) {\n        updatePeriod(updatePeriodInput: $updatePeriodInput) {\n            id\n            month\n            year\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query Periods {\n        periods {\n            id\n            month\n            year\n        }\n    }\n"): (typeof documents)["\n    query Periods {\n        periods {\n            id\n            month\n            year\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    mutation DeletePeriod($deletePeriodId: Int!) {\n        deletePeriod(id: $deletePeriodId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeletePeriod($deletePeriodId: Int!) {\n        deletePeriod(id: $deletePeriodId) {\n            id\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

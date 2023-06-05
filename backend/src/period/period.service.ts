@@ -15,7 +15,16 @@ export class PeriodService {
 
   async findAll(): Promise<Period[]> {
     // todo: order by?
-    return this.prisma.period.findMany();
+    return this.prisma.period.findMany({
+      orderBy: [
+        {
+          year: 'asc',
+        },
+        {
+          month: 'asc',
+        },
+      ],
+    });
   }
 
   async create(data: Prisma.PeriodCreateInput): Promise<Period> {
@@ -26,6 +35,7 @@ export class PeriodService {
   }
 
   async delete(id: string): Promise<Period> {
+    // TODO: delete all entries associated with this period
     return this.prisma.period.delete({
       where: { id: parseInt(id) },
     });

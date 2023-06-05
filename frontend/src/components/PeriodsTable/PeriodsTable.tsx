@@ -2,31 +2,31 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import { Button, Popconfirm, Space, Table, notification } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import { useMemo, useState } from "react";
-import { Label, LabelsQuery } from "../../gql/graphql";
-import LabelModal from "../LabelsModal/LabelsModal";
-import { AlignType } from 'rc-table/lib/interface';
+import { Period, PeriodsQuery } from "../../gql/graphql";
+import { AlignType } from "rc-table/lib/interface";
+import PeriodsModal from "../PeriodsModal/PeriodsModal";
 
-const LABELS_QUERY = gql`
-    query Labels {
-        labels {
+const PERIODS_QUERY = gql`
+    query Periods {
+        periods {
             id
-            label
-            isIncome
+            month
+            year
         }
     }
 `;
 
-const DELETE_LABEL_MUTATION = gql`
-    mutation DeleteLabel($deleteLabelId: Int!) {
-        deleteLabel(id: $deleteLabelId) {
+const DELETE_PERIOD_MUTATION = gql`
+    mutation DeletePeriod($deletePeriodId: Int!) {
+        deletePeriod(id: $deletePeriodId) {
             id
         }
     }
 `;
 
-const LabelsTable = () => {
+const PeriodsTable = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editObject, setEditObject] = useState<Label | null>(null);
+    const [editObject, setEditObject] = useState<Period | null>(null);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -42,38 +42,38 @@ const LabelsTable = () => {
         setEditObject(null);
     };
 
-    const { data, loading, error } = useQuery<LabelsQuery>(LABELS_QUERY);
+    const { data, loading, error } = useQuery<PeriodsQuery>(PERIODS_QUERY);
 
     const dataSource = useMemo(
-        () => data?.labels?.map(({ id, label, isIncome }) => ({ key: id, id, label, isIncome })) ?? [],
+        () => data?.periods?.map(({ id, month, year }) => ({ key: id, id, month, year })) ?? [],
         [data]
     );
 
-    const [deleteLabel, { loading: deleteLoading }] = useMutation(DELETE_LABEL_MUTATION);
+    const [deletePeriod, { loading: deleteLoading }] = useMutation(DELETE_PERIOD_MUTATION);
 
-    const deleteLabelHandler = (id: number) => {
-        deleteLabel({ variables: { deleteLabelId: id }, refetchQueries: ["Labels"] }).then(() => {
-            notification.info({ message: "Label deleted" });
+    const deletePeriodHandler = (id: number) => {
+        deletePeriod({ variables: { deletePeriodId: id }, refetchQueries: ["Periods"] }).then(() => {
+            notification.info({ message: "Period deleted" });
         });
     };
 
     const columns = [
         {
-            key: "label",
-            title: "Label",
-            dataIndex: "label"
+            key: "month",
+            title: "Month",
+            dataIndex: "month",
         },
+
         {
-            key: "isIncome",
-            title: "Is income?",
-            dataIndex: "isIncome",
-            render: (isIncome: boolean) => (isIncome ? "Yes" : "No")
+            key: "year",
+            title: "Year",
+            dataIndex: "year",
         },
         {
             key: "actions",
             title: "",
             align: "right" as AlignType,
-            render: (_: unknown, record: Label) => {
+            render: (_: unknown, record: Period) => {
                 return (
                     <>
                         <Space>
@@ -88,9 +88,9 @@ const LabelsTable = () => {
                                 Edit
                             </Button>{" "}
                             <Popconfirm
-                                title="Delete the label"
-                                description="Are you sure you want to delete this label?"
-                                onConfirm={() => deleteLabelHandler(record.id)}
+                                title="Delete the period"
+                                description="Are you sure you want to delete this period?"
+                                onConfirm={() => deletePeriodHandler(record.id)}
                                 okText="Yes"
                                 cancelText="Cancel"
                             >
@@ -101,22 +101,22 @@ const LabelsTable = () => {
                         </Space>
                     </>
                 );
-            }
-        }
+            },
+        },
     ];
 
     if (error) {
-        return <h3>Error fetching labels</h3>;
+        return <h3>Error fetching periods</h3>;
     }
     return (
         <div>
             <h3>
-                Labels <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()} />
+                Periods <Button type="primary" icon={<PlusOutlined />} onClick={() => showModal()} />
             </h3>
             <Table columns={columns} dataSource={dataSource} loading={loading || deleteLoading} pagination={false} />
-            <LabelModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} editObject={editObject} />
+            <PeriodsModal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} editObject={editObject} />
         </div>
     );
 };
 
-export default LabelsTable;
+export default PeriodsTable;
