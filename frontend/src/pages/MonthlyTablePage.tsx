@@ -2,6 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useState, useMemo } from "react";
 import { Period, PeriodsQuery } from "../gql/graphql";
 import { Select, SelectProps } from "antd";
+import IncomeTable from "../components/IncomeTable/IncomeTable";
 const PERIODS_QUERY = gql`
     query Periods {
         periods {
@@ -15,9 +16,9 @@ const MonthlyTablePage = () => {
     const { data: periodsData, loading: periodsLoading, error: periodsError } = useQuery<PeriodsQuery>(PERIODS_QUERY);
 
     // todo: read from url param or try to select current month
-    const [activePeriod, setActivePeriod] = useState<string>("");
+    const [activePeriodId, setActivePeriodId] = useState<string>("");
     const handlePeriodChange = (value: string) => {
-        setActivePeriod(value);
+        setActivePeriodId(value);
     };
 
     // todo: possibly use optGroups to group by year
@@ -42,6 +43,9 @@ const MonthlyTablePage = () => {
                     style={{ width: "300px", display: "block", marginLeft: "auto" }}
                 />
             )}
+            <div style={{ marginTop: "50px" }}>
+                <IncomeTable activePeriodId={activePeriodId} />
+            </div>
         </div>
     );
 };

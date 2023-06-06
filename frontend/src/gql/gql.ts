@@ -17,6 +17,7 @@ const documents = {
     "\n    mutation UpdateExpenseGroup($updateExpenseGroupInput: UpdateExpenseGroupInput) {\n        updateExpenseGroup(updateExpenseGroupInput: $updateExpenseGroupInput) {\n            id\n            name\n        }\n    }\n": types.UpdateExpenseGroupDocument,
     "\n    query ExpenseGroups {\n        expenseGroups {\n            id\n            name\n        }\n    }\n": types.ExpenseGroupsDocument,
     "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n": types.DeleteExpenseGroupDocument,
+    "\n    query IncomeByPeriod($incomeByPeriodId: ID!) {\n        incomeByPeriod(id: $incomeByPeriodId) {\n            entries {\n                id\n                value\n                label {\n                    label\n                }\n            }\n            sum\n        }\n    }\n": types.IncomeByPeriodDocument,
     "\n    mutation CreateLabel($createLabelInput: CreateLabelInput) {\n        createLabel(createLabelInput: $createLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n": types.CreateLabelDocument,
     "\n    mutation UpdateLabel($updateLabelInput: UpdateLabelInput) {\n        updateLabel(updateLabelInput: $updateLabelInput) {\n            id\n            label\n            isIncome\n        }\n    }\n": types.UpdateLabelDocument,
     "\n    query Labels {\n        labels {\n            id\n            label\n            isIncome\n        }\n    }\n": types.LabelsDocument,
@@ -57,6 +58,10 @@ export function graphql(source: "\n    query ExpenseGroups {\n        expenseGro
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"): (typeof documents)["\n    mutation DeleteExpenseGroup($deleteExpenseGroupId: Int!) {\n        deleteExpenseGroup(id: $deleteExpenseGroupId) {\n            id\n        }\n    }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query IncomeByPeriod($incomeByPeriodId: ID!) {\n        incomeByPeriod(id: $incomeByPeriodId) {\n            entries {\n                id\n                value\n                label {\n                    label\n                }\n            }\n            sum\n        }\n    }\n"): (typeof documents)["\n    query IncomeByPeriod($incomeByPeriodId: ID!) {\n        incomeByPeriod(id: $incomeByPeriodId) {\n            entries {\n                id\n                value\n                label {\n                    label\n                }\n            }\n            sum\n        }\n    }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
