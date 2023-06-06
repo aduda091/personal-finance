@@ -38,6 +38,12 @@ export type CreatePeriodInput = {
   year: Scalars['Int']['input'];
 };
 
+export type EntriesWithSum = {
+  __typename?: 'EntriesWithSum';
+  entries?: Maybe<Array<Entry>>;
+  sum: Scalars['Float']['output'];
+};
+
 export type Entry = {
   __typename?: 'Entry';
   expenseGroup?: Maybe<ExpenseGroup>;
@@ -150,6 +156,8 @@ export type Query = {
   entry?: Maybe<Entry>;
   expenseGroup?: Maybe<ExpenseGroup>;
   expenseGroups?: Maybe<Array<ExpenseGroup>>;
+  expensesByPeriod?: Maybe<EntriesWithSum>;
+  incomeByPeriod?: Maybe<EntriesWithSum>;
   label?: Maybe<Label>;
   labels?: Maybe<Array<Label>>;
   period?: Maybe<Period>;
@@ -163,6 +171,16 @@ export type QueryEntryArgs = {
 
 
 export type QueryExpenseGroupArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryExpensesByPeriodArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type QueryIncomeByPeriodArgs = {
   id: Scalars['ID']['input'];
 };
 

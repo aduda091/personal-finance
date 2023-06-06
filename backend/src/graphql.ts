@@ -60,6 +60,8 @@ export interface IQuery {
     __typename?: 'IQuery';
     entries(): Nullable<Entry[]> | Promise<Nullable<Entry[]>>;
     entry(id: string): Nullable<Entry> | Promise<Nullable<Entry>>;
+    incomeByPeriod(id: string): Nullable<EntriesWithSum> | Promise<Nullable<EntriesWithSum>>;
+    expensesByPeriod(id: string): Nullable<EntriesWithSum> | Promise<Nullable<EntriesWithSum>>;
     expenseGroups(): Nullable<ExpenseGroup[]> | Promise<Nullable<ExpenseGroup[]>>;
     expenseGroup(id: string): Nullable<ExpenseGroup> | Promise<Nullable<ExpenseGroup>>;
     labels(): Nullable<Label[]> | Promise<Nullable<Label[]>>;
@@ -100,6 +102,12 @@ export interface Entry {
     period: Period;
     label: Label;
     expenseGroup?: Nullable<ExpenseGroup>;
+}
+
+export interface EntriesWithSum {
+    __typename?: 'EntriesWithSum';
+    entries?: Nullable<Entry[]>;
+    sum: number;
 }
 
 export interface ExpenseGroup {

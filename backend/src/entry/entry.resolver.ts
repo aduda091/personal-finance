@@ -11,11 +11,19 @@ export class EntryResolver {
     return this.entryService.findAll();
   }
 
-  // TODO: entries filtered by period ID
-
   @Query('entry')
   async findOne(@Args('id') id: string) {
     return this.entryService.findOne(id);
+  }
+
+  @Query('incomeByPeriod')
+  async findIncomeByPeriod(@Args('id') id: string) {
+    return this.entryService.findEntriesByPeriod(id, true);
+  }
+
+  @Query('expensesByPeriod')
+  async findExpensesByPeriod(@Args('id') id: string) {
+    return this.entryService.findEntriesByPeriod(id, false);
   }
 
   @Mutation('createEntry')

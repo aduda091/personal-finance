@@ -1,6 +1,8 @@
 type Query {
   entries: [Entry!]
   entry(id: ID!): Entry
+  incomeByPeriod(id: ID!): EntriesWithSum
+  expensesByPeriod(id: ID!): EntriesWithSum
 }
 
 type Mutation {
@@ -20,6 +22,11 @@ type Entry {
   period: Period!
   label: Label!
   expenseGroup: ExpenseGroup
+}
+
+type EntriesWithSum {
+    entries: [Entry!]
+    sum: Float!
 }
 
 input CreateEntryInput {

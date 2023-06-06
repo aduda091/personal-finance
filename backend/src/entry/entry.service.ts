@@ -28,6 +28,29 @@ export class EntryService {
     });
   }
 
+  async findEntriesByPeriod(id: string, isIncome: boolean) {
+    const entries = await this.prisma.entry.findMany({
+      where: {
+        AND: [
+          {
+            periodId: parseInt(id),
+          },
+          {
+            isIncome,
+          },
+        ],
+      },
+      include: {
+        expenseGroup: true,
+        label: true,
+        period: true,
+      },
+    });
+    const sum = entries.reduce((acc, curr) => acc + Number(curr.value), 0);
+
+    return { entries, sum };
+  }
+
   async create(data: CreateEntryInput): Promise<Entry> {
     const { isIncome, value, label, period, expenseGroup } = data;
     return this.prisma.entry.create({
