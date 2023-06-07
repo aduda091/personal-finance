@@ -18,7 +18,6 @@ const router = createBrowserRouter([
                 path: RoutePaths.MONTHLY,
                 element: <MonthlyTablePage />
             },
-            // TODO: add table period in url?
             {
                 path: RoutePaths.CHARTS,
                 element: <ChartsPage />

@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import { PeriodsQuery } from "../gql/graphql";
 import { Spin, Tabs, TabsProps } from "antd";
 import IncomeTable from "../components/IncomeTable/IncomeTable";
+import { useSearchParams } from "react-router-dom";
 
 const PERIODS_QUERY = gql`
     query Periods {
@@ -17,10 +18,13 @@ const PERIODS_QUERY = gql`
 const MonthlyTablePage = () => {
     const { data: periodsData, loading: periodsLoading, error: periodsError } = useQuery<PeriodsQuery>(PERIODS_QUERY);
 
-    // todo: read from url param or try to select current month
-    const [activePeriodId, setActivePeriodId] = useState<string>("");
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    // read from url param
+    const [activePeriodId, setActivePeriodId] = useState<string>(searchParams.get("activePeriodId") ?? "");
     const handlePeriodChange = (value: string) => {
         setActivePeriodId(value);
+        setSearchParams({ activePeriodId: value });
     };
 
     const tabItems = useMemo<TabsProps["items"]>(() => {
